@@ -12,7 +12,7 @@ DEBUG = True
 if DEBUG:
     load_dotenv()
 
-ALLOWED_HOSTS = ['localhost', '84.252.139.0', '127.0.0.1', 'okittygram.zapto.org']
+ALLOWED_HOSTS = ['localhost', '130.193.34.201', '127.0.0.1', 'k1ttygram.hopto.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
