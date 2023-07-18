@@ -6,13 +6,13 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = str(os.getenv("SECRET_KEY"))
+load_dotenv()
 
-DEBUG = True
-if DEBUG:
-    load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['localhost', '130.193.34.201', '127.0.0.1', 'k1ttygram.hopto.org']
+DEBUG = os.getenv('DEBUG', False) == 'True'
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(,)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,11 +61,11 @@ WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': str(os.getenv('POSTGRES_DB')),
-        'USER': str(os.getenv('POSTGRES_USER')),
-        'PASSWORD': str(os.getenv('POSTGRES_PASSWORD')),
-        'HOST': str(os.getenv('DB_HOST')),
-        'PORT': str(os.getenv('DB_PORT')),
+        'NAME': os.getenv('POSTGRES_DB', 'postgres'),
+        'USER': os.getenv('POSTGRES_USER','django'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', 5432),
     }
 }
 
@@ -103,7 +103,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR/'backend_static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
